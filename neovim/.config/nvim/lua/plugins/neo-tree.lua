@@ -15,6 +15,7 @@ return {
         mappings = {
           ["<space>"] = false, -- disable space until we figure out which-key disabling
           ["l"] = "open",
+          [";"] = "toggle_preview",
           ["o"] = "open",
           ["h"] = "close_node",
         },
