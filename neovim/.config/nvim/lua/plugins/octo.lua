@@ -6,6 +6,7 @@ return {
       "nvim-telescope/telescope.nvim",
       "nvim-tree/nvim-web-devicons",
     },
+    lazy = false,
     config = function()
       require("octo").setup({ enable_builtin = true })
       vim.cmd([[hi OctoEditable guibg=none]])
