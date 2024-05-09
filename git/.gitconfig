@@ -26,6 +26,11 @@
   untracked = cyan
 [pull]
     rebase = true
+    prune = true
+[fetch]
+    prune = true
+[push]
+    default = current
 [core]
     excludesfile = ~/.gitignore_global
     pager = less -FXRS -x2

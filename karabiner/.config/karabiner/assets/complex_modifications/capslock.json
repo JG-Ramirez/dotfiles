@@ -38,23 +38,7 @@
           }
         },
         {
-          "description": "escape = capslock switch",
-          "type": "basic",
-          "from": {
-            "key_code": "escape",
-            "modifiers": {
-              "optional": ["caps_lock"],
-              "mandatory": ["left_control"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "caps_lock",
-              "modifiers": ["left_control"]
-            }
-          ]
-        },
-        {
+          "description": "enter to control",
           "from": {
             "key_code": "return_or_enter",
             "modifiers": {
@@ -80,6 +64,33 @@
           "type": "basic"
         },
         {
+          "description": "left control to escape (HHKB style)",
+          "from": {
+            "key_code": "left_control",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "parameters": {
+            "basic": {
+              "to_if_alone_timeout_milliseconds": 500
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "command + hjkl to arrow keys",
           "from": {
             "key_code": "h",
             "modifiers": {
@@ -95,6 +106,7 @@
           "type": "basic"
         },
         {
+          "description": "command + hjkl to arrow keys",
           "from": {
             "key_code": "j",
             "modifiers": {
@@ -110,6 +122,7 @@
           "type": "basic"
         },
         {
+          "description": "command + hjkl to arrow keys",
           "from": {
             "key_code": "k",
             "modifiers": {
@@ -125,6 +138,7 @@
           "type": "basic"
         },
         {
+          "description": "command + hjkl to arrow keys",
           "from": {
             "key_code": "l",
             "modifiers": {
@@ -140,27 +154,7 @@
           "type": "basic"
         },
         {
-          "type": "basic",
-          "from": {
-            "simultaneous": [
-              {
-                "key_code": "equal_sign"
-              },
-              {
-                "key_code": "delete_or_backspace"
-              }
-            ],
-            "modifiers": {
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_forward"
-            }
-          ]
-        },
-        {
+          "description": "right shift + right shift to mission control",
           "type": "basic",
           "from": {
             "key_code": "right_shift",
@@ -180,44 +174,6 @@
               "value": 1
             }
           ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "right_shift",
-            "modifiers": {
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "set_variable": {
-                "name": "right_shift pressed",
-                "value": 1
-              }
-            },
-            {
-              "key_code": "right_shift"
-            }
-          ],
-          "to_delayed_action": {
-            "to_if_invoked": [
-              {
-                "set_variable": {
-                  "name": "right_shift pressed",
-                  "value": 0
-                }
-              }
-            ],
-            "to_if_canceled": [
-              {
-                "set_variable": {
-                  "name": "right_shift pressed",
-                  "value": 0
-                }
-              }
-            ]
-          }
         }
       ]
     }
