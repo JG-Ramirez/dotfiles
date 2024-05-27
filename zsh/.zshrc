@@ -62,9 +62,8 @@ bindkey '^e' autosuggest-accept
 #installed with git clone https://github.com/rupa/z ~/.zsh/z
 source ~/.zsh/z/z.sh
 # installed with git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-#source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #}}}
-export EDITOR=$(which nvim)
 # aliases
 alias zshconfig="nvim ~/.zshrc"
 alias record="asciinema rec"
@@ -96,11 +95,7 @@ export LC_ALL="en_US.UTF-8"
 export VISUAL=/usr/local/bin/nvim
 # todo.sh alias
 export TODOTXT_DEFAULT_ACTION=ls
-funcname lazygit() {
-    git add .
-    git commit -a -m "$1"
-    git push
-}
+alias lg='lazygit'
 # FZF 
 if $(command -v fzf >/dev/null); then
     # fgco - checkout git branch/tag
@@ -159,9 +154,22 @@ export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 
-# github
-export GITHUB_TOKEN=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
-
 
 # NR AWS Profile
 export AWS_PROFILE=mgmt
+source /Users/jgramirezc2/.rvm/scripts/rvm
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# nvim remote settings
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+fi
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+    export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+else
+    export VISUAL="nvim"
+    export EDITOR="nvim"
+fi
