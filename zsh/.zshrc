@@ -21,10 +21,6 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 # }}}
 
-#--------------- vi mode {{{
-bindkey -v
-export KEYTIMEOUT=1
-
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -32,32 +28,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
- #Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-    echo -ne '\e[5 q' # Use beam shape cursor on startup.
-    preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 #}}}
 
 #------------------- Plugins {{{
-#installed with git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^e' autosuggest-accept
 #installed with git clone https://github.com/rupa/z ~/.zsh/z
 source ~/.zsh/z/z.sh
@@ -96,43 +69,6 @@ export VISUAL=/usr/local/bin/nvim
 # todo.sh alias
 export TODOTXT_DEFAULT_ACTION=ls
 alias lg='lazygit'
-# FZF 
-if $(command -v fzf >/dev/null); then
-    # fgco - checkout git branch/tag
-  gco() {
-    local tags branches target
-    tags=$(
-      git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}'
-    ) || return
-    branches=$(
-      git branch --all | grep -v HEAD |
-        sed "s/.* //" | sed "s#remotes/[^/]*/##" |
-        sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}'
-    ) || return
-    target=$(
-      (
-        echo "$tags"
-        echo "$branches"
-      ) |
-        fzf-tmux -- --no-hscroll --ansi +m -d "\t" -n 2
-    ) || return
-    git checkout $(echo "$target" | awk '{print $2}')
-  }
-fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS='--no-mouse --height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
-# To apply the command to CTRL-T as well
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# suppose you have installed fzf to ~/.fzf, change it to what suits you
-export FZF_BASE="$HOME/.fzf"
-e() {fzf | xargs -I % $EDITOR % ;}
- zle -N e{,}
- bindkey "^h" e
  # pyenv added to the path
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
@@ -147,18 +83,8 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 export PHP_ID=php7_3; export PATH="/Applications/DevDesktop/php7_3_x64/bin:/Applications/DevDesktop/mysql/bin:/Applications/DevDesktop/tools:$PATH"
 
-# chromium in mac m1
-export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-export PUPPETEER_EXECUTABLE_PATH=`which chromium`
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 
-
-# NR AWS Profile
-export AWS_PROFILE=mgmt
-source /Users/jgramirezc2/.rvm/scripts/rvm
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # nvim remote settings
 
@@ -173,3 +99,6 @@ else
     export VISUAL="nvim"
     export EDITOR="nvim"
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
