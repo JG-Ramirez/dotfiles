@@ -86,8 +86,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 # FZF key bindings and completions
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+# source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
+source <(fzf --zsh)
 # source RVM scripts
 source "$HOME/.rvm/scripts/rvm" # $HOME installation
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
