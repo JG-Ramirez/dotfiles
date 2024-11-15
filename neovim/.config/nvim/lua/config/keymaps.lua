@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("t", "jk", "<C-><C-n>")
-vim.keymap.set("n", "<leader><CR>", ":nohlsearch<CR>")
+-- vim.keymap.set("n", "<leader><CR>", ":nohlsearch<CR>")
 vim.keymap.set("n", "<C-h>", "^")
 vim.keymap.set("n", "<C-l>", "g_")
 vim.keymap.set("v", "<C-h>", "^")
