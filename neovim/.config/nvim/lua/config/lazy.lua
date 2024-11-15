@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins", dev = { true } },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
@@ -26,6 +26,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.util.octo" },
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.copilot-chat" },
+    { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
@@ -60,5 +61,10 @@ require("lazy").setup({
         "zipPlugin",
       },
     },
+  },
+  -- https://github.com/dpetka2001/dotfiles/blob/5a73f6dcb1e02c70597942db4583a7b4c3139547/dot_config/nvim/lua/config/lazy.lua#L65-L68
+  dev = {
+    path = "~/Personal/",
+    patterns = { "LazyVim" },
   },
 })
