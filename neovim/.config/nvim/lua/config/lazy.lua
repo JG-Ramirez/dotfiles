@@ -24,11 +24,12 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.ruby" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.util.octo" },
-    { import = "lazyvim.plugins.extras.ai.copilot" },
+    -- { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.copilot-chat" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
+    { import = "lazyvim.plugins.extras.editor.outline" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
     { import = "plugins" },
@@ -64,7 +65,7 @@ require("lazy").setup({
   },
   -- https://github.com/dpetka2001/dotfiles/blob/5a73f6dcb1e02c70597942db4583a7b4c3139547/dot_config/nvim/lua/config/lazy.lua#L65-L68
   --dev = {
-    --path = "~/Personal/",
-    --patterns = { "LazyVim" },
+  --path = "~/Personal/",
+  --patterns = { "LazyVim" },
   --},
 })
