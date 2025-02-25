@@ -2,7 +2,7 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = false,
-  version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+  version = "*", -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   keys = {
     {
       "<leader>ip",
@@ -36,6 +36,7 @@ return {
     },
     copilot = {
       model = "claude-3.5-sonnet", -- or "gpt-4o"
+      -- model = "claude-3.7-sonnet" -- uncomment this when enabled
       temperature = 0,
       max_tokens = 8192,
     },
