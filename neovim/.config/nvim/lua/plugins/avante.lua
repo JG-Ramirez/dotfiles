@@ -14,10 +14,8 @@ return {
     },
   },
   opts = {
-    -- add any opts here
-    -- for example
-    -- provider = "openrouter",
     provider = "copilot",
+    cursor_applying_provider = "groq",
     vendors = {
       openrouter = {
         __inherited_from = "openai",
@@ -32,6 +30,13 @@ return {
         api_key_name = "",
         endpoint = "http://127.0.0.1:11434/v1",
         model = "codegemma",
+      },
+      groq = {
+        __inherited_from = "openai",
+        api_key_name = "GROQ_API_KEY",
+        endpoint = "https://api.groq.com/openai/v1/",
+        model = "llama-3.3-70b-versatile",
+        max_tokens = 32768,
       },
     },
     copilot = {
@@ -49,6 +54,8 @@ return {
       minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
       enable_token_counting = true, -- Whether to enable token counting. Default to true.
       enable_cursor_planning_mode = true,
+      show_diff_preview = true,
+      format_on_apply = true,
     },
     mappings = {
       --- @class AvanteConflictMappings
