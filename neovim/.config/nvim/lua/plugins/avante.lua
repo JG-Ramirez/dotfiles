@@ -15,7 +15,7 @@ return {
   },
   opts = {
     provider = "copilot",
-    cursor_applying_provider = "groq",
+    cursor_applying_provider = "ollama",
     vendors = {
       openrouter = {
         __inherited_from = "openai",
@@ -29,7 +29,7 @@ return {
         __inherited_from = "openai",
         api_key_name = "",
         endpoint = "http://127.0.0.1:11434/v1",
-        model = "codegemma",
+        model = "hf.co/Kortix/FastApply-1.5B-v1.0_GGUF:Q4_K_M",
       },
       groq = {
         __inherited_from = "openai",
