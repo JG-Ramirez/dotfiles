@@ -29,14 +29,15 @@ return {
         __inherited_from = "openai",
         api_key_name = "",
         endpoint = "http://127.0.0.1:11434/v1",
-        model = "hf.co/Kortix/FastApply-7B-v1.0_GGUF:Q4_K_M",
+        -- model = "hf.co/Kortix/FastApply-7B-v1.0_GGUF:Q4_K_M",
+        model = "hf.co/Kortix/FastApply-1.5B-v1.0_GGUF:Q4_K_M",
       },
       groq = {
         __inherited_from = "openai",
         api_key_name = "GROQ_API_KEY",
         endpoint = "https://api.groq.com/openai/v1/",
         model = "llama-3.3-70b-versatile",
-        max_tokens = 32768,
+        max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
       },
     },
     copilot = {
